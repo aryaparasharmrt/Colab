@@ -1,0 +1,32 @@
+name: Issue Triage 1
+
+on:
+  issues:
+    types:
+      - opened
+      - labled
+      - edited
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for bug label
+      if: contains(github.event.issue.title, 'bug') || contains(github.event.issue.body, 'bug')
+      run: |
+        echo "Labeling as bug"
+        gh issue add-label ${{ github.repository }}#${{ github.event.issue.number }} bug
+
+    - name: Check for feature label
+      if: contains(github.event.issue.title, 'feature') || contains(github.event.issue.body, 'feature')
+      run: |
+        echo "Labeling as feature"
+        gh issue add-label ${{ github.repository }}#${{ github.event.issue.number }} feature
+
+    # Add more conditions and labels as needed
+
+    - name: Check for triage label
+      run: |
+        echo "Labeling as triage"
+        gh issue add-label ${{ github.repository }}#${{ github.event.issue.number }} triage
