@@ -7,8 +7,8 @@ const octokit = new Octokit({
 async function triageIssue(issueNumber) {
   try {
     const issue = await octokit.issues.get({
-      owner: process.env.GITHUB_REPOSITORY_OWNER,
-      repo: process.env.GITHUB_REPOSITORY,
+      owner: "aryaparasharmrt",
+      repo: "Colab",
       issue_number: issueNumber,
     });
 
