@@ -19,7 +19,9 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install
+        run: 
+          npm install @octokit/rest
+          npm install
 
       - name: Run triage script
         run: node .github/scripts/triage.js
